@@ -1,6 +1,6 @@
 services:
   - type: web
-    name: heatguard-backend
+    name: svastra-backend
     runtime: python
     rootDir: backend
     buildCommand: pip install -r requirements.txt
@@ -26,3 +26,15 @@ services:
         value: "77.2090"
       - key: WEATHER_CACHE_SECONDS
         value: "300"
+      - key: MAIL_HOST
+        value: "smtp-relay.brevo.com"
+      - key: MAIL_PORT
+        value: "2525"
+      - key: MAIL_SECURE
+        value: "false"
+      - key: MAIL_USER
+        sync: false
+      - key: MAIL_PASS
+        sync: false
+      - key: MAIL_FROM
+        value: "Svastra <noreply@svastra.local>"
