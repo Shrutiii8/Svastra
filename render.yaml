@@ -1,0 +1,28 @@
+services:
+  - type: web
+    name: heatguard-backend
+    runtime: python
+    rootDir: backend
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
+    healthCheckPath: /health
+    autoDeploy: true
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.9
+      - key: ENVIRONMENT
+        value: production
+      - key: DEMO_MODE
+        value: "true"
+      - key: DATABASE_URL
+        sync: false
+      - key: SECRET_KEY
+        generateValue: true
+      - key: BACKEND_CORS_ORIGINS
+        value: '["*"]'
+      - key: WEATHER_DEFAULT_LATITUDE
+        value: "28.6139"
+      - key: WEATHER_DEFAULT_LONGITUDE
+        value: "77.2090"
+      - key: WEATHER_CACHE_SECONDS
+        value: "300"

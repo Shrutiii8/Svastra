@@ -1,0 +1,69 @@
+version: '3.9'
+
+services:
+  db:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: heatguard
+      POSTGRES_PASSWORD: changeme
+      POSTGRES_DB: heatguard
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U heatguard -d heatguard"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    environment:
+      DATABASE_URL: postgresql+psycopg://heatguard:changeme@db:5432/heatguard
+      SECRET_KEY: change-me-in-production
+      ENVIRONMENT: development
+      DEMO_MODE: "true"
+      WEATHER_DEFAULT_LATITUDE: "28.6139"
+      WEATHER_DEFAULT_LONGITUDE: "77.2090"
+      WEATHER_CACHE_SECONDS: "300"
+      BACKEND_CORS_ORIGINS: "http://localhost:8081,http://10.0.2.2:8081"
+      ML_SERVICE_URL: "http://ml:8001"
+      ML_ENABLED: "true"
+      ML_API_TOKEN: "heatguard-permanent-token-2026"
+    ports:
+      - "8000:8000"
+    depends_on:
+      db:
+        condition: service_healthy
+      ml:
+        condition: service_started
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 15s
+
+  ml:
+    build:
+      context: .
+      dockerfile: ml/Dockerfile
+    restart: unless-stopped
+    environment:
+      ML_API_TOKEN: "heatguard-permanent-token-2026"
+    ports:
+      - "8001:8001"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8001/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 15s
+
+volumes:
+  pg_data:
