@@ -1,0 +1,44 @@
+{
+  "trained_at": "2026-10-17T07:26:34.588586+00:00",
+  "model_type": "XGBClassifier",
+  "framework": "xgboost + scikit-learn pipeline",
+  "n_features": 10,
+  "feature_cols": [
+    "heart_rate_bpm",
+    "baseline_hr_bpm",
+    "hr_delta",
+    "temperature_c",
+    "humidity_pct",
+    "heat_index",
+    "age_years",
+    "minutes_since_break",
+    "activity_level",
+    "reading_age_minutes"
+  ],
+  "risk_labels": {
+    "0": "no_unusual_pattern",
+    "1": "monitor",
+    "2": "supervisor_review"
+  },
+  "n_train": 8000,
+  "n_test": 2000,
+  "cv_folds": 5,
+  "cv_f1_macro_mean": 0.9595131865253992,
+  "cv_f1_macro_std": 0.004163868786032594,
+  "test_accuracy": 0.96,
+  "test_f1_macro": 0.9519844912830938,
+  "best_params": {},
+  "feature_importances": {
+    "heart_rate_bpm": 0.12211884558200836,
+    "baseline_hr_bpm": 0.032926663756370544,
+    "hr_delta": 0.4410276710987091,
+    "temperature_c": 0.07184486836194992,
+    "humidity_pct": 0.022864045575261116,
+    "heat_index": 0.24084097146987915,
+    "age_years": 0.01660747639834881,
+    "minutes_since_break": 0.01709730178117752,
+    "activity_level": 0.01732606813311577,
+    "reading_age_minutes": 0.017346149310469627
+  },
+  "disclaimer": "This model is trained on entirely synthetic data for a hackathon proof-of-concept. It does NOT provide medically validated predictions. All risk assessments are illustrative only."
+}
