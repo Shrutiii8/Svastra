@@ -1,0 +1,10 @@
+{
+  "name": "svastra-web",
+  "version": "1.0.0",
+  "description": "Svastra (HeatGuard Twin) Official Web Platform",
+  "private": true,
+  "dependencies": {
+    "nodemailer": "^10.1.2"
+  }
+}
+

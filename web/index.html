@@ -1,0 +1,929 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
+  <title>Svastra — Wearable-Powered Heat Exposure Intelligence & Digital Twin</title>
+  <meta name="description" content="Svastra (HeatGuard Twin) is a wearable-powered physiological digital twin platform protecting outdoor workers from extreme heat through real-time biometrics, localized microclimate intelligence, and personalized baselines.">
+  <meta name="keywords" content="Svastra, HeatGuard, Digital Twin, Heat Stress, Wearable IoT, Health Connect, Outdoor Workers Safety, Occupational Health">
+  <meta name="author" content="Svastra Engineering Team">
+
+  <!-- Open Graph / Meta -->
+  <meta property="og:title" content="Svastra — Wearable-Powered Heat Exposure Intelligence">
+  <meta property="og:description" content="Real-time physiological digital twin monitoring for outdoor workers under extreme heat conditions.">
+  <meta property="og:image" content="./assets/svastra-logo.png">
+  <meta property="og:type" content="website">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="./assets/favicon.png">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+
+  <!-- Ambient Background Glows -->
+  <div class="ambient-glow glow-top" aria-hidden="true"></div>
+  <div class="ambient-glow glow-bottom" aria-hidden="true"></div>
+
+  <!-- Navigation Bar -->
+  <header class="site-header" id="header">
+    <div class="container nav-container">
+      <a href="#hero" class="brand-link" aria-label="Svastra Homepage">
+        <img src="./assets/svastra-logo.png" alt="Svastra Logo" class="brand-logo" width="40" height="40">
+        <div class="brand-text">
+          <span class="brand-title">SVASTRA</span>
+          <span class="brand-sub">HEATGUARD TWIN</span>
+        </div>
+      </a>
+
+      <!-- Desktop Nav -->
+      <nav class="nav-menu" aria-label="Main Navigation">
+        <a href="#about-software" class="nav-link">How It Works</a>
+        <a href="#simulator" class="nav-link">Twin Simulator</a>
+        <a href="#features" class="nav-link">Features</a>
+        <a href="#team" class="nav-link">About Us</a>
+        <a href="#contact" class="nav-link">Contact</a>
+      </nav>
+
+      <!-- Nav Actions -->
+      <div class="nav-actions">
+        <!-- Theme Toggle -->
+        <button id="themeToggle" class="icon-btn theme-toggle-btn" aria-label="Toggle dark/light theme" title="Toggle theme">
+          <svg class="sun-icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+          <svg class="moon-icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+        </button>
+
+        <!-- Download APK Button -->
+        <a href="https://github.com/iambeinganupam/svastra-web/releases/latest/download/Svastra.apk" class="btn btn-primary btn-sm apk-download-btn">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M17.523 15.3414c-.5511 0-.9993-.4486-.9993-1.0001 0-.5516.4482-1.0002.9993-1.0002.5516 0 1 .4486 1 1.0002 0 .5515-.4484 1.0001-1 1.0001m-11.046 0c-.5511 0-.9993-.4486-.9993-1.0001 0-.5516.4482-1.0002.9993-1.0002.5516 0 1 .4486 1 1.0002 0 .5515-.4484 1.0001-1 1.0001m11.4045-6.02l1.9973-3.4592a.416.416 0 0 0-.1521-.5676.416.416 0 0 0-.5676.1521l-2.0223 3.503C15.5902 8.4116 13.8533 8.125 12 8.125c-1.8534 0-3.5902.2866-5.1368.8247L4.8409 5.4467a.4161.4161 0 0 0-.5677-.1521.4157.4157 0 0 0-.1521.5676l1.9973 3.4592C2.6889 11.1867.3432 14.6589 0 18.75h24c-.3432-4.0911-2.6889-7.5633-6.1185-9.4286"/></svg>
+          <span>Download APK</span>
+        </a>
+
+        <!-- Mobile Hamburger Toggle -->
+        <button id="mobileMenuToggle" class="mobile-toggle" aria-expanded="false" aria-controls="mobileDrawer" aria-label="Toggle navigation menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Full-Screen Mobile Drawer Navigation Overlay -->
+  <div id="mobileDrawer" class="mobile-drawer" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Mobile Navigation">
+    <div class="mobile-drawer-header">
+      <a href="#hero" class="drawer-brand" aria-label="Svastra Homepage">
+        <img src="./assets/svastra-logo.png" alt="Svastra Logo" class="brand-logo" width="36" height="36">
+        <div class="brand-text">
+          <span class="brand-title">SVASTRA</span>
+          <span class="brand-sub">HEATGUARD TWIN</span>
+        </div>
+      </a>
+      <div class="drawer-header-actions">
+        <!-- Drawer Theme Toggle -->
+        <button class="icon-btn theme-toggle-btn" aria-label="Toggle dark/light theme" title="Toggle theme">
+          <svg class="sun-icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+          <svg class="moon-icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+        </button>
+        <!-- Close Drawer Button -->
+        <button id="closeDrawerBtn" class="icon-btn close-drawer-btn" aria-label="Close navigation menu" title="Close menu">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+        </button>
+      </div>
+    </div>
+
+    <div class="mobile-drawer-body">
+      <div class="mobile-nav-caption">NAVIGATION</div>
+      <nav class="mobile-nav-list" aria-label="Mobile Navigation Links">
+        <a href="#about-software" class="mobile-nav-item mobile-nav-link">
+          <div class="nav-item-icon icon-cyan">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+          </div>
+          <div class="nav-item-text">
+            <span class="nav-item-title">How It Works</span>
+            <span class="nav-item-desc">Architecture & real-time telemetry flow</span>
+          </div>
+          <svg class="nav-item-arrow" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>
+        </a>
+
+        <a href="#simulator" class="mobile-nav-item mobile-nav-link">
+          <div class="nav-item-icon icon-warning">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"></path></svg>
+          </div>
+          <div class="nav-item-text">
+            <div class="nav-item-title-row">
+              <span class="nav-item-title">Twin Simulator</span>
+              <span class="nav-pill-badge">LIVE</span>
+            </div>
+            <span class="nav-item-desc">Interactive heat strain gauge engine</span>
+          </div>
+          <svg class="nav-item-arrow" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>
+        </a>
+
+        <a href="#features" class="mobile-nav-item mobile-nav-link">
+          <div class="nav-item-icon icon-blue">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+          </div>
+          <div class="nav-item-text">
+            <span class="nav-item-title">Features & Tech</span>
+            <span class="nav-item-desc">Personalized baselines & edge intelligence</span>
+          </div>
+          <svg class="nav-item-arrow" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>
+        </a>
+
+        <a href="#team" class="mobile-nav-item mobile-nav-link">
+          <div class="nav-item-icon icon-purple">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+          </div>
+          <div class="nav-item-text">
+            <span class="nav-item-title">About Us</span>
+            <span class="nav-item-desc">Occupational health research team</span>
+          </div>
+          <svg class="nav-item-arrow" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>
+        </a>
+
+        <a href="#contact" class="mobile-nav-item mobile-nav-link">
+          <div class="nav-item-icon icon-positive">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+          </div>
+          <div class="nav-item-text">
+            <span class="nav-item-title">Contact & Inquiries</span>
+            <span class="nav-item-desc">Enterprise pilot & deployment</span>
+          </div>
+          <svg class="nav-item-arrow" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>
+        </a>
+      </nav>
+    </div>
+
+    <div class="mobile-drawer-footer">
+      <a href="https://github.com/iambeinganupam/svastra-web/releases/latest/download/Svastra.apk" class="btn btn-primary btn-block drawer-apk-btn">
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M17.523 15.3414c-.5511 0-.9993-.4486-.9993-1.0001 0-.5516.4482-1.0002.9993-1.0002.5516 0 1 .4486 1 1.0002 0 .5515-.4484 1.0001-1 1.0001m-11.046 0c-.5511 0-.9993-.4486-.9993-1.0001 0-.5516.4482-1.0002.9993-1.0002.5516 0 1 .4486 1 1.0002 0 .5515-.4484 1.0001-1 1.0001m11.4045-6.02l1.9973-3.4592a.416.416 0 0 0-.1521-.5676.416.416 0 0 0-.5676.1521l-2.0223 3.503C15.5902 8.4116 13.8533 8.125 12 8.125c-1.8534 0-3.5902.2866-5.1368.8247L4.8409 5.4467a.4161.4161 0 0 0-.5677-.1521.4157.4157 0 0 0-.1521.5676l1.9973 3.4592C2.6889 11.1867.3432 14.6589 0 18.75h24c-.3432-4.0911-2.6889-7.5633-6.1185-9.4286"/></svg>
+        <div class="drawer-apk-text">
+          <span>Download Svastra Android App</span>
+          <small class="drawer-apk-meta">v1.0.0 • 104 MB APK</small>
+        </div>
+      </a>
+      <p class="drawer-footer-note">© 2026 Svastra Team. All rights reserved.</p>
+    </div>
+  </div>
+
+  <main>
+    <!-- HERO SECTION -->
+    <section class="hero-section" id="hero">
+      <div class="container hero-grid">
+        <div class="hero-text-col">
+          <div class="hero-badge">
+            <span class="pulse-dot"></span>
+            <span>Occupational Heat Strain Digital Twin POC</span>
+          </div>
+
+          <h1 class="hero-title">
+            Protecting Workforce Lives Under <span class="gradient-text">Extreme Heat</span>.
+          </h1>
+
+          <p class="hero-desc">
+            Weather forecasts alone cannot reveal how an outdoor worker's body is coping. <strong>Svastra</strong> creates an edge-first <em>Physiological Digital Twin</em> combining wearable biometrics, hyper-local microclimate readings, and personalized baselines to alert supervisors before heat exhaustion turns fatal.
+          </p>
+
+          <div class="hero-metrics-pill-row">
+            <div class="metric-pill">
+              <span class="metric-icon">⌚</span>
+              <span>Universal Smartwatch Sync</span>
+            </div>
+            <div class="metric-pill">
+              <span class="metric-icon">🌡️</span>
+              <span>Open-Meteo Climate Context</span>
+            </div>
+            <div class="metric-pill">
+              <span class="metric-icon">🛡️</span>
+              <span>100% Consent & Non-Invasive</span>
+            </div>
+          </div>
+
+          <div class="hero-cta-group">
+            <a href="https://github.com/iambeinganupam/svastra-web/releases/latest/download/Svastra.apk" class="btn btn-primary btn-lg">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M17.523 15.3414c-.5511 0-.9993-.4486-.9993-1.0001 0-.5516.4482-1.0002.9993-1.0002.5516 0 1 .4486 1 1.0002 0 .5515-.4484 1.0001-1 1.0001m-11.046 0c-.5511 0-.9993-.4486-.9993-1.0001 0-.5516.4482-1.0002.9993-1.0002.5516 0 1 .4486 1 1.0002 0 .5515-.4484 1.0001-1 1.0001m11.4045-6.02l1.9973-3.4592a.416.416 0 0 0-.1521-.5676.416.416 0 0 0-.5676.1521l-2.0223 3.503C15.5902 8.4116 13.8533 8.125 12 8.125c-1.8534 0-3.5902.2866-5.1368.8247L4.8409 5.4467a.4161.4161 0 0 0-.5677-.1521.4157.4157 0 0 0-.1521.5676l1.9973 3.4592C2.6889 11.1867.3432 14.6589 0 18.75h24c-.3432-4.0911-2.6889-7.5633-6.1185-9.4286"/></svg>
+              <span>Download Android APK</span>
+              <span class="btn-subtext">v1.0.0 • 104MB</span>
+            </a>
+            <a href="#about-software" class="btn btn-secondary btn-lg">
+              <span>See How It Works</span>
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>
+            </a>
+          </div>
+
+          <div class="hero-disclaimer-note">
+            <span class="disclaimer-badge">⚕️ Non-Diagnostic Disclaimer</span>
+            <span>Svastra is an illustrative occupational proof of concept. Not intended as medical diagnosis.</span>
+          </div>
+        </div>
+
+        <!-- Hero Visual: Real-time Digital Twin Telemetry Card -->
+        <div class="hero-visual-col">
+          <div class="twin-hero-card glassmorphic">
+            <div class="card-glass-glow" aria-hidden="true"></div>
+            
+            <div class="twin-card-header">
+              <div class="worker-avatar">
+                <span>RK</span>
+                <span class="live-dot" title="Live telemetry stream"></span>
+              </div>
+              <div class="worker-meta">
+                <div class="worker-name">Rajesh Kumar</div>
+                <div class="worker-role">Construction • Sector 62 Site</div>
+              </div>
+              <div class="status-pill status-review" id="heroStatusPill">
+                <span class="status-indicator"></span>
+                <span>Review Needed</span>
+              </div>
+            </div>
+
+            <!-- Biometric Grid -->
+            <div class="twin-metrics-grid">
+              <div class="metric-box">
+                <div class="metric-label">
+                  <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor" class="heart-pulse-icon"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+                  <span>Current Heart Rate</span>
+                </div>
+                <div class="metric-val text-danger" id="heroHrDisplay">118 <small>BPM</small></div>
+                <div class="metric-sub">
+                  <span>+46 bpm vs baseline (72)</span>
+                </div>
+              </div>
+
+              <div class="metric-box">
+                <div class="metric-label">
+                  <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 14.76V3.5a2.5 2.5 0 0 0-5 0v11.26a4.5 4.5 0 1 0 5 0z"/></svg>
+                  <span>Ambient Temperature</span>
+                </div>
+                <div class="metric-val text-warning">41.8 <small>°C</small></div>
+                <div class="metric-sub">
+                  <span>Heat Index: 46.2°C (Extreme)</span>
+                </div>
+              </div>
+
+              <div class="metric-box">
+                <div class="metric-label">
+                  <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                  <span>Blood Oxygen (SpO₂)</span>
+                </div>
+                <div class="metric-val text-positive">97%</div>
+                <div class="metric-sub">Optimal Range</div>
+              </div>
+
+              <div class="metric-box">
+                <div class="metric-label">
+                  <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                  <span>Shift Exposure</span>
+                </div>
+                <div class="metric-val text-primary">4h 35m</div>
+                <div class="metric-sub">8,940 steps taken</div>
+              </div>
+            </div>
+
+            <!-- Dynamic Waveform & Strain Bar -->
+            <div class="strain-index-box">
+              <div class="strain-header">
+                <span class="strain-title">Physiological Strain Differential</span>
+                <span class="strain-level text-danger" id="heroStrainLevel">Elevated Strain (+64%)</span>
+              </div>
+              <div class="progress-bar-track">
+                <div class="progress-bar-fill progress-fill-danger" style="width: 78%;"></div>
+              </div>
+              <div class="strain-recommendation">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
+                <span><strong>Recommended Action:</strong> Pull worker to air-cooled canopy, initiate 15m oral rehydration protocol.</span>
+              </div>
+            </div>
+
+            <div class="card-footer-strip">
+              <div class="strip-item">
+                <span class="strip-label">Telemetry Source:</span>
+                <span class="strip-val">Smartwatch via Health Connect</span>
+              </div>
+              <div class="strip-item">
+                <span class="strip-label">Last Sync:</span>
+                <span class="strip-val">Just now (Live)</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- HOW IT WORKS SECTION -->
+    <section class="section how-it-works-section" id="about-software">
+      <div class="container">
+        <div class="section-header text-center">
+          <div class="section-tag">ENGINEERING & SYSTEM ARCHITECTURE</div>
+          <h2 class="section-title">How Does <span class="gradient-text">Svastra</span> Work?</h2>
+          <p class="section-subtitle">
+            Most heat safety protocols rely exclusively on ambient thermometers. Svastra bridges the physiological gap by pairing wearable biometric telemetry with hyper-local meteorology and individual baselines.
+          </p>
+        </div>
+
+        <!-- 4-Stage Architecture Pipeline -->
+        <div class="pipeline-grid">
+          <!-- Step 1 -->
+          <div class="pipeline-card glassmorphic">
+            <div class="step-number">01</div>
+            <div class="step-icon-wrap icon-cyan">
+              <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2"><rect x="6" y="2" width="12" height="20" rx="3"></rect><line x1="12" y1="18" x2="12.01" y2="18"></line></svg>
+            </div>
+            <h3 class="step-title">Wearable Telemetry Sync</h3>
+            <p class="step-desc">
+              Outdoor workers wear affordable commercial smartwatches or fitness bands from any manufacturer. The <strong>Svastra Mobile App</strong> taps into native <strong>Android Health Connect</strong> to securely retrieve optical heart rate, step count, and SpO₂ readings without requiring continuous paired Bluetooth connections.
+            </p>
+            <ul class="step-features">
+              <li>Universal WearOS & Smartwatch integration</li>
+              <li>Batch idempotent telemetry ingestion</li>
+              <li>Encrypted storage on-device</li>
+            </ul>
+          </div>
+
+          <!-- Step 2 -->
+          <div class="pipeline-card glassmorphic">
+            <div class="step-number">02</div>
+            <div class="step-icon-wrap icon-warning">
+              <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+            </div>
+            <h3 class="step-title">Hyper-Local Microclimate</h3>
+            <p class="step-desc">
+              The backend connects asynchronously with <strong>Open-Meteo</strong> atmospheric APIs, capturing ambient temperature, relative humidity, direct solar exposure, and wind speed for the job site coordinates. An intelligent 5-minute cache with simulated fallback guarantees zero downtime.
+            </p>
+            <ul class="step-features">
+              <li>Apparent Heat Index & Wet-Bulb approximation</li>
+              <li>Automatic cached fallback mechanisms</li>
+              <li>Hyper-local job site granularity</li>
+            </ul>
+          </div>
+
+          <!-- Step 3 -->
+          <div class="pipeline-card glassmorphic">
+            <div class="step-number">03</div>
+            <div class="step-icon-wrap icon-blue">
+              <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
+            </div>
+            <h3 class="step-title">Personal Baseline Modeling</h3>
+            <p class="step-desc">
+              A heart rate of 115 bpm might be normal for a 22-year-old carrying rebar, but dangerous for a 55-year-old vendor. Svastra rejects one-size-fits-all limits. It builds a rolling 7-day personalized baseline ($HR_0$) for every worker, assessing biometric changes relative to their own normal biology.
+            </p>
+            <ul class="step-features">
+              <li>Rolling 7-day baseline normalization</li>
+              <li>Individual differential calculation ($HR - HR_{baseline}$)</li>
+              <li>Categorized by occupational workload</li>
+            </ul>
+          </div>
+
+          <!-- Step 4 -->
+          <div class="pipeline-card glassmorphic">
+            <div class="step-number">04</div>
+            <div class="step-icon-wrap icon-danger">
+              <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+            </div>
+            <h3 class="step-title">Deterministic Triage Engine</h3>
+            <p class="step-desc">
+              Instead of an unpredictable black-box neural net, Svastra utilizes an audited clinical rule-based engine. It triangulates heart rate elevation, ambient temperature thresholds, and data recency into instant triage statuses with actionable safety actions.
+            </p>
+            <ul class="step-features">
+              <li>Instant 3-tier status: Normal, Monitor, Review</li>
+              <li>Environmental escalation rules ($T \ge 40^\circ\text{C}$)</li>
+              <li>Zero hallucinations & full auditability</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- System Architecture Data Flow Box -->
+        <div class="arch-flow-box glassmorphic">
+          <div class="arch-header">
+            <h3>Complete End-to-End Data Flow</h3>
+            <span class="badge badge-accent">Secure • Non-Invasive • Cloud / Edge</span>
+          </div>
+          <div class="arch-diagram-flow">
+            <div class="flow-node">
+              <div class="flow-icon">⌚</div>
+              <div class="flow-title">Smartwatch / Band</div>
+              <div class="flow-sub">Optical PPG & Biometrics</div>
+            </div>
+            <div class="flow-arrow">➔</div>
+            <div class="flow-node">
+              <div class="flow-icon">📲</div>
+              <div class="flow-title">Android Health Connect</div>
+              <div class="flow-sub">Privacy-Gated OS Store</div>
+            </div>
+            <div class="flow-arrow">➔</div>
+            <div class="flow-node">
+              <div class="flow-icon">⚡</div>
+              <div class="flow-title">Svastra Mobile (Expo)</div>
+              <div class="flow-sub">On-device Telemetry Client</div>
+            </div>
+            <div class="flow-arrow">➔</div>
+            <div class="flow-node">
+              <div class="flow-icon">🛡️</div>
+              <div class="flow-title">FastAPI Backend</div>
+              <div class="flow-sub">Baseline & Rule Engine</div>
+            </div>
+            <div class="flow-arrow">➔</div>
+            <div class="flow-node">
+              <div class="flow-icon">📊</div>
+              <div class="flow-title">Supervisor Triage</div>
+              <div class="flow-sub">Real-Time Risk Alerts</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- INTERACTIVE DIGITAL TWIN SIMULATOR -->
+    <section class="section simulator-section" id="simulator">
+      <div class="container">
+        <div class="section-header text-center">
+          <div class="section-tag">HANDS-ON SIMULATION</div>
+          <h2 class="section-title">Try the <span class="gradient-text">Interactive Twin Engine</span></h2>
+          <p class="section-subtitle">
+            Adjust the sliders below to see how Svastra evaluates personal physiological distress against environmental heat in real time.
+          </p>
+        </div>
+
+        <div class="sim-wrapper glassmorphic">
+          <!-- Controls Column -->
+          <div class="sim-controls-col">
+            <h3 class="sim-panel-title">Telemetry Parameters</h3>
+
+            <!-- Slider 1: Ambient Temp -->
+            <div class="control-group">
+              <div class="control-label-row">
+                <label for="tempSlider">Ambient Temperature (°C)</label>
+                <span class="control-value" id="tempValue">41.5 °C</span>
+              </div>
+              <input type="range" id="tempSlider" min="26" max="48" step="0.5" value="41.5" class="slider-input">
+              <div class="slider-ticks">
+                <span>26°C (Mild)</span>
+                <span>37°C (Warm)</span>
+                <span>48°C (Extreme)</span>
+              </div>
+            </div>
+
+            <!-- Slider 2: Current Heart Rate -->
+            <div class="control-group">
+              <div class="control-label-row">
+                <label for="hrSlider">Current Heart Rate (BPM)</label>
+                <span class="control-value text-danger" id="hrValue">118 BPM</span>
+              </div>
+              <input type="range" id="hrSlider" min="60" max="175" step="1" value="118" class="slider-input">
+              <div class="slider-ticks">
+                <span>60 bpm (Rest)</span>
+                <span>110 bpm (Moderate)</span>
+                <span>175 bpm (Peak)</span>
+              </div>
+            </div>
+
+            <!-- Slider 3: Worker Baseline HR -->
+            <div class="control-group">
+              <div class="control-label-row">
+                <label for="baselineSlider">Worker 7-Day Baseline HR (BPM)</label>
+                <span class="control-value" id="baselineValue">72 BPM</span>
+              </div>
+              <input type="range" id="baselineSlider" min="60" max="95" step="1" value="72" class="slider-input">
+              <div class="slider-ticks">
+                <span>60 bpm</span>
+                <span>75 bpm (Typical)</span>
+                <span>95 bpm</span>
+              </div>
+            </div>
+
+            <!-- Preset Scenarios -->
+            <div class="scenario-buttons-row">
+              <span class="scenario-label">Quick Scenarios:</span>
+              <button class="pill-btn active" data-preset="review">Severe Heat Stress</button>
+              <button class="pill-btn" data-preset="monitor">Elevated / Monitor</button>
+              <button class="pill-btn" data-preset="normal">Normal Condition</button>
+              <button class="pill-btn" data-preset="extreme-weather">Extreme Weather Modifier</button>
+            </div>
+          </div>
+
+          <!-- Interactive Output Card -->
+          <div class="sim-output-col">
+            <div class="sim-result-card" id="simResultCard">
+              <div class="sim-status-header">
+                <span class="sim-header-label">ASSESSMENT ENGINE VERDICT</span>
+                <div class="status-badge" id="simStatusBadge">
+                  <span class="badge-dot"></span>
+                  <span id="simStatusText">Supervisor Review Needed</span>
+                </div>
+              </div>
+
+              <!-- Strain Gauge Circle -->
+              <div class="sim-gauge-wrap">
+                <svg viewBox="0 0 160 160" class="gauge-svg">
+                  <circle cx="80" cy="80" r="70" class="gauge-bg"></circle>
+                  <circle cx="80" cy="80" r="70" class="gauge-fill" id="simGaugeCircle" stroke-dasharray="440" stroke-dashoffset="120"></circle>
+                </svg>
+                <div class="gauge-inner-content">
+                  <div class="gauge-score" id="simStrainScore">78<small>%</small></div>
+                  <div class="gauge-sub" id="simStrainLabel">High Strain</div>
+                </div>
+              </div>
+
+              <!-- Calculations Breakdown -->
+              <div class="sim-breakdown-list">
+                <div class="breakdown-item">
+                  <span>Heart Rate Elevation:</span>
+                  <strong id="simHrDiff">+46 BPM above baseline</strong>
+                </div>
+                <div class="breakdown-item">
+                  <span>Environmental Threat:</span>
+                  <strong id="simTempStatus">Severe Heat Wave (≥ 40°C)</strong>
+                </div>
+                <div class="breakdown-item">
+                  <span>Triggered Clinical Rule:</span>
+                  <strong id="simRuleTrigger">HR > Baseline + 40 bpm</strong>
+                </div>
+              </div>
+
+              <!-- Actionable Safety Recommendation -->
+              <div class="sim-action-box" id="simActionBox">
+                <div class="action-box-title">
+                  <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14h2v2h-2v-2zm0-10h2v8h-2V6z"/></svg>
+                  <span>Protocol Recommendation</span>
+                </div>
+                <p id="simActionText">
+                  Immediate supervisor intervention required. Remove worker to shaded recovery station, provide cool electrolyte water, and monitor heart rate decay for 15 minutes.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- KEY FEATURES SECTION -->
+    <section class="section features-section" id="features">
+      <div class="container">
+        <div class="section-header text-center">
+          <div class="section-tag">CAPABILITIES & BENEFITS</div>
+          <h2 class="section-title">Built for Real-World <span class="gradient-text">Occupational Safety</span></h2>
+          <p class="section-subtitle">
+            Engineered from ground up to survive harsh Indian summer job sites, unreliable connectivity, and heterogeneous hardware.
+          </p>
+        </div>
+
+        <div class="features-grid">
+          <div class="feature-card glassmorphic">
+            <div class="feature-icon icon-cyan">🧬</div>
+            <h3 class="feature-title">Personalized Biometric Baselines</h3>
+            <p class="feature-desc">
+              Accounts for natural biological variance, age, and individual cardiovascular fitness by calculating rolling 7-day personalized reference envelopes rather than rigid generic thresholds.
+            </p>
+          </div>
+
+          <div class="feature-card glassmorphic">
+            <div class="feature-icon icon-blue">⌚</div>
+            <h3 class="feature-title">Universal Wearables Sync</h3>
+            <p class="feature-desc">
+              Integrated with Android Health Connect. Works natively with Samsung Galaxy Watches, Pixel Watches, WearOS devices, and commercial fitness bands without proprietary vendor lock-in.
+            </p>
+          </div>
+
+          <div class="feature-card glassmorphic">
+            <div class="feature-icon icon-warning">🌡️</div>
+            <h3 class="feature-title">Microclimate Intelligence</h3>
+            <p class="feature-desc">
+              Retrieves live wet-bulb and dry-bulb ambient conditions via Open-Meteo. Automatically correlates temperature spikes with worker heart rate strain indices.
+            </p>
+          </div>
+
+          <div class="feature-card glassmorphic">
+            <div class="feature-icon icon-danger">🚨</div>
+            <h3 class="feature-title">Supervisor Multi-Worker Triage</h3>
+            <p class="feature-desc">
+              Site managers can view hundreds of outdoor workers at a single glance, filtered by category (Construction, Delivery, Vendor, Police) and sorted by risk severity.
+            </p>
+          </div>
+
+          <div class="feature-card glassmorphic">
+            <div class="feature-icon icon-positive">🔒</div>
+            <h3 class="feature-title">Privacy-By-Design & Consent</h3>
+            <p class="feature-desc">
+              Requires explicit worker opt-in before collecting vitals. No GPS tracking or background tracking cookies are collected, ensuring worker trust and ethical compliance.
+            </p>
+          </div>
+
+          <div class="feature-card glassmorphic">
+            <div class="feature-icon icon-purple">⚡</div>
+            <h3 class="feature-title">Offline Resilient & Standalone APK</h3>
+            <p class="feature-desc">
+              Compiles to a standalone 104MB Android APK with complete offline asset bundling and local SQLite cache when working in remote cell-dead zones.
+            </p>
+          </div>
+        </div>
+
+        <!-- Target Demographics Strip -->
+        <div class="demographics-strip glassmorphic">
+          <h3 class="demographics-title">Specialized Profiles Across 4 High-Exposure Sectors:</h3>
+          <div class="demographics-grid">
+            <div class="demographic-item">
+              <span class="cat-pill cat-construction">Construction</span>
+              <p>Heavy physical exertion under direct sunlight. High risk of rapid cardiovascular elevation.</p>
+            </div>
+            <div class="demographic-item">
+              <span class="cat-pill cat-delivery">Delivery Fleets</span>
+              <p>Urban heat islands, motorcycle engine radiation, and continuous high-intensity routing.</p>
+            </div>
+            <div class="demographic-item">
+              <span class="cat-pill cat-vendor">Street Vendors</span>
+              <p>Prolonged daytime exposure in crowded open-air markets with limited shaded respite.</p>
+            </div>
+            <div class="demographic-item">
+              <span class="cat-pill cat-police">Traffic Police</span>
+              <p>Standing on sun-baked asphalt junctions with reflective vehicle heat and particulate stress.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT US / TEAM SECTION -->
+    <section class="section team-section" id="team">
+      <div class="container">
+        <div class="section-header text-center">
+          <div class="section-tag">WHO WE ARE</div>
+          <h2 class="section-title">Meet the <span class="gradient-text">Svastra Team</span></h2>
+          <p class="section-subtitle">
+            We are a multidisciplinary team of engineers, system architects, and health-tech innovators dedicated to mitigating climate heat emergencies for India's vulnerable outdoor workforce.
+          </p>
+        </div>
+
+        <div class="team-grid">
+          <!-- Member 1: Anupam Raj -->
+          <div class="team-card glassmorphic">
+            <div class="team-avatar-wrap">
+              <div class="team-avatar avatar-1">AR</div>
+            </div>
+            <h3 class="team-name">Anupam Raj</h3>
+            <div class="team-role">Lead Architect & Fullstack Systems</div>
+            <p class="team-bio">
+              Specializes in distributed edge architectures, FastAPI microservices, and reactive IoT telemetry pipelines. Led the core system design, rule engine, and end-to-end integration.
+            </p>
+            <div class="team-socials">
+              <a href="https://github.com" target="_blank" rel="noopener" aria-label="GitHub Profile" class="team-social-link">
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+              </a>
+              <a href="https://linkedin.com" target="_blank" rel="noopener" aria-label="LinkedIn Profile" class="team-social-link">
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+              </a>
+            </div>
+          </div>
+
+          <!-- Member 2: Shruti Sinha -->
+          <div class="team-card glassmorphic">
+            <div class="team-avatar-wrap">
+              <div class="team-avatar avatar-2">SS</div>
+            </div>
+            <h3 class="team-name">Shruti Sinha</h3>
+            <div class="team-role">Mobile & Wearable Health Lead</div>
+            <p class="team-bio">
+              React Native and Android Health Connect specialist. Designed the mobile app UX, offline-sync caching logic, and wearable pairing pipelines across diverse wearable ecosystems.
+            </p>
+            <div class="team-socials">
+              <a href="https://github.com" target="_blank" rel="noopener" aria-label="GitHub Profile" class="team-social-link">
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+              </a>
+              <a href="https://linkedin.com" target="_blank" rel="noopener" aria-label="LinkedIn Profile" class="team-social-link">
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+              </a>
+            </div>
+          </div>
+
+          <!-- Member 3: Sanskar Agarwal -->
+          <div class="team-card glassmorphic">
+            <div class="team-avatar-wrap">
+              <div class="team-avatar avatar-3">SA</div>
+            </div>
+            <h3 class="team-name">Sanskar Agarwal</h3>
+            <div class="team-role">Data Modeling & Biometric Analytics</div>
+            <p class="team-bio">
+              Focuses on physiological strain modeling and environmental heat indexing. Formulated the 7-day rolling personal baseline normalization algorithm and Open-Meteo microclimate parser.
+            </p>
+            <div class="team-socials">
+              <a href="https://github.com" target="_blank" rel="noopener" aria-label="GitHub Profile" class="team-social-link">
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+              </a>
+              <a href="https://linkedin.com" target="_blank" rel="noopener" aria-label="LinkedIn Profile" class="team-social-link">
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Hackathon & Project Mission Banner -->
+        <div class="mission-banner glassmorphic">
+          <div class="mission-content">
+            <h3>Our Mission</h3>
+            <p>
+              "In India and across developing economies, over 300 million workers spend their entire shifts in oppressive heat exceeding 42°C with limited access to shade. Svastra was born out of an urgent need: to make high-grade physiological safety monitoring radically affordable, private, and accessible to every job site supervisor."
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT US FORM SECTION -->
+    <section class="section contact-section" id="contact">
+      <div class="container">
+        <div class="section-header text-center">
+          <div class="section-tag">CONNECT & COLLABORATE</div>
+          <h2 class="section-title">Get In Touch With <span class="gradient-text">Our Team</span></h2>
+          <p class="section-subtitle">
+            Interested in deploying a pilot on your construction or delivery workforce? Have research inquiries or technical feedback? Send us a message below.
+          </p>
+        </div>
+
+        <div class="contact-grid">
+          <!-- Form Card -->
+          <div class="contact-form-card glassmorphic">
+            <form id="contactForm" novalidate>
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="fullName">Full Name <span class="req">*</span></label>
+                  <input type="text" id="fullName" name="fullName" placeholder="e.g. Vikramaditya Rao" required minlength="2">
+                  <span class="field-error" id="nameError">Please enter your name.</span>
+                </div>
+
+                <div class="form-group">
+                  <label for="emailAddr">Work Email Address <span class="req">*</span></label>
+                  <input type="email" id="emailAddr" name="emailAddr" placeholder="name@company.com" required>
+                  <span class="field-error" id="emailError">Please enter a valid email address.</span>
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="orgName">Organization / Entity</label>
+                  <input type="text" id="orgName" name="orgName" placeholder="e.g. InfraTech Contractors Ltd.">
+                </div>
+
+                <div class="form-group">
+                  <label for="sectorSelect">Industry Sector <span class="req">*</span></label>
+                  <select id="sectorSelect" name="sectorSelect" required>
+                    <option value="" disabled selected>Select industry focus...</option>
+                    <option value="construction">Civil Construction & Infrastructure</option>
+                    <option value="delivery">Logistics, Quick-Commerce & Delivery</option>
+                    <option value="municipal">Municipal Corporation & Police</option>
+                    <option value="manufacturing">Heavy Industrial & Metal Casting</option>
+                    <option value="research">Academic / Occupational Research</option>
+                    <option value="other">Other Outdoor Trade</option>
+                  </select>
+                  <span class="field-error" id="sectorError">Please select an industry sector.</span>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="inquirySubject">Subject <span class="req">*</span></label>
+                <input type="text" id="inquirySubject" name="inquirySubject" placeholder="e.g. Pilot deployment for 150 site workers in Delhi-NCR" required minlength="5">
+                <span class="field-error" id="subjectError">Please provide a brief subject.</span>
+              </div>
+
+              <div class="form-group">
+                <label for="messageText">Project Details or Inquiry <span class="req">*</span></label>
+                <textarea id="messageText" name="messageText" rows="4" placeholder="Tell us about your team size, current heat protocols, and wearable hardware preferences..." required minlength="15"></textarea>
+                <span class="field-error" id="messageError">Please provide at least 15 characters describing your request.</span>
+              </div>
+
+              <div class="form-group checkbox-group">
+                <label class="checkbox-container">
+                  <input type="checkbox" id="consentCheck" name="consentCheck" required>
+                  <span class="checkmark"></span>
+                  <span class="checkbox-text">I understand this is a research and occupational proof of concept, and agree to receive follow-up information.</span>
+                </label>
+                <span class="field-error" id="consentError">Please agree to proceed.</span>
+              </div>
+
+              <button type="submit" id="submitContactBtn" class="btn btn-primary btn-block btn-lg">
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+                <span>Send Message & Request Pilot</span>
+              </button>
+            </form>
+          </div>
+
+          <!-- Contact Details / Info Card -->
+          <div class="contact-info-card glassmorphic">
+            <h3 class="info-card-title">Project Channels</h3>
+            <p class="info-card-desc">
+              We welcome partnerships with researchers, trade unions, construction conglomerates, and occupational health specialists.
+            </p>
+
+            <div class="info-items-list">
+              <div class="info-item">
+                <div class="info-icon">📍</div>
+                <div class="info-text">
+                  <strong>Pilot Testing Zone:</strong>
+                  <p>New Delhi & National Capital Region (NCR), India</p>
+                </div>
+              </div>
+
+              <div class="info-item">
+                <div class="info-icon">✉️</div>
+                <div class="info-text">
+                  <strong>Direct Email:</strong>
+                  <p><a href="mailto:iambeinganupam@gmail.com" class="link-cyan">contact@svastra.com</a></p>
+                </div>
+              </div>
+
+              <div class="info-item">
+                <div class="info-icon">📦</div>
+                <div class="info-text">
+                  <strong>Android Release APK:</strong>
+                  <p><a href="https://github.com/iambeinganupam/svastra-web/releases/latest/download/Svastra.apk" class="link-cyan">Download Standalone APK (104 MB)</a></p>
+                </div>
+              </div>
+
+              <div class="info-item">
+                <div class="info-icon">💻</div>
+                <div class="info-text">
+                  <strong>Software Architecture:</strong>
+                  <p>FastAPI Backend & Expo React Native Client</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Health & Safety Disclaimer Box -->
+            <div class="contact-disclaimer-box">
+              <div class="disclaimer-title">
+                <span>⚠️ Occupational & Legal Disclaimer</span>
+              </div>
+              <p>
+                Svastra (HeatGuard Twin) is developed as an illustrative technological prototype. It is not an FDA, CE, or CDSCO registered medical device and cannot replace diagnostic biometric telemetry, emergency cooling protocols, or licensed physician care.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Success Modal for Contact Form -->
+  <div id="contactSuccessModal" class="modal-backdrop" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal-box glassmorphic">
+      <div class="modal-icon-wrap">
+        <svg viewBox="0 0 24 24" width="48" height="48" fill="none" stroke="#3DDC84" stroke-width="2.5"><circle cx="12" cy="12" r="10"></circle><polyline points="8 12 11 15 16 9"></polyline></svg>
+      </div>
+      <h3 id="modalTitle" class="modal-title">Inquiry Sent Successfully!</h3>
+      <p class="modal-desc" id="modalConfirmationText">
+        Thank you, <strong id="modalUserName">Friend</strong>. Your inquiry has been dispatched to our team at <a href="mailto:iambeinganupam@gmail.com" class="link-cyan">contact@svastra.com</a>. We will respond to <span id="modalUserEmail" class="link-cyan"></span> shortly.
+      </p>
+      <div class="modal-actions" style="display: flex; gap: 0.8rem; flex-wrap: wrap;">
+        <button id="closeModalBtn" class="btn btn-secondary" style="flex: 1;">Close Window</button>
+        <a id="modalMailtoBtn" href="mailto:iambeinganupam@gmail.com" class="btn btn-primary" style="flex: 1;">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+          <span>Open Email App</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Site Footer -->
+  <footer class="site-footer">
+    <div class="container footer-content">
+      <div class="footer-top-row">
+        <div class="footer-brand">
+          <div class="brand-link">
+            <img src="./assets/svastra-logo.png" alt="Svastra Logo" width="32" height="32">
+            <span class="brand-title">SVASTRA</span>
+          </div>
+          <p class="footer-tagline">Wearable-powered physiological digital twin monitoring for outdoor workforces.</p>
+        </div>
+
+        <div class="footer-nav-col">
+          <h4>Navigation</h4>
+          <a href="#hero">Overview</a>
+          <a href="#about-software">How It Works</a>
+          <a href="#simulator">Digital Twin Simulator</a>
+          <a href="#features">Core Features</a>
+          <a href="#team">About Us (Team)</a>
+          <a href="#contact">Contact</a>
+        </div>
+
+        <div class="footer-nav-col">
+          <h4>Resources</h4>
+          <a href="https://github.com/iambeinganupam/svastra-web/releases/latest/download/Svastra.apk">Download Android APK</a>
+          <a href="https://developer.android.com/health-and-fitness/guides/health-connect" target="_blank" rel="noopener">Android Health Connect</a>
+          <a href="https://open-meteo.com" target="_blank" rel="noopener">Open-Meteo Weather API</a>
+        </div>
+      </div>
+
+      <div class="footer-bottom-row">
+        <p>© 2026 Svastra Team. All rights reserved.</p>
+        <p class="footer-note">Built for workforce heat safety across the Global South.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="./app.js"></script>
+</body>
+</html>

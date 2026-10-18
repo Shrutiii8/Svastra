@@ -1,0 +1,6 @@
+# Ignore large APK binary (exceeds GitHub 100MB limit)
+*.apk
+.DS_Store
+Thumbs.db
+node_modules/
+.vercel/

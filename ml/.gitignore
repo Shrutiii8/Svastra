@@ -1,0 +1,29 @@
+# Trained model artifacts (large binary files — do not commit)
+artifacts/model/*.joblib
+artifacts/model/*.pkl
+artifacts/model/*.bin
+
+# Generated training data (reproducible — do not commit)
+artifacts/data/*.csv
+artifacts/data/*.parquet
+
+# Evaluation outputs
+artifacts/eval/*.png
+artifacts/eval/*.jpg
+artifacts/eval/*.pdf
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+.venv/
+venv/
+*.egg-info/
+
+# Optuna DB
+*.db
+optuna.study.*
+
+# Jupyter
+.ipynb_checkpoints/
+*.ipynb

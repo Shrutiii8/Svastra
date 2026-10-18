@@ -1,0 +1,50 @@
+{
+  "accuracy": 0.96,
+  "f1_macro": 0.9519844912830938,
+  "per_class": {
+    "no_unusual_pattern": {
+      "precision": 0.9658753709198813,
+      "recall": 0.9644444444444444,
+      "f1-score": 0.9651593773165308,
+      "support": 675.0
+    },
+    "monitor": {
+      "precision": 0.9543245869776482,
+      "recall": 0.982,
+      "f1-score": 0.9679645145391819,
+      "support": 1000.0
+    },
+    "supervisor_review": {
+      "precision": 0.9663299663299664,
+      "recall": 0.8830769230769231,
+      "f1-score": 0.9228295819935691,
+      "support": 325.0
+    },
+    "accuracy": 0.96,
+    "macro avg": {
+      "precision": 0.9621766414091653,
+      "recall": 0.9431737891737892,
+      "f1-score": 0.9519844912830938,
+      "support": 2000.0
+    },
+    "weighted avg": {
+      "precision": 0.9601738507029036,
+      "recall": 0.96,
+      "f1-score": 0.959683354187875,
+      "support": 2000.0
+    }
+  },
+  "feature_importances": {
+    "heart_rate_bpm": 0.12211884558200836,
+    "baseline_hr_bpm": 0.032926663756370544,
+    "hr_delta": 0.4410276710987091,
+    "temperature_c": 0.07184486836194992,
+    "humidity_pct": 0.022864045575261116,
+    "heat_index": 0.24084097146987915,
+    "age_years": 0.01660747639834881,
+    "minutes_since_break": 0.01709730178117752,
+    "activity_level": 0.01732606813311577,
+    "reading_age_minutes": 0.017346149310469627
+  },
+  "disclaimer": "Results from a model trained on entirely synthetic data. NOT medically validated. Illustrative only."
+}
