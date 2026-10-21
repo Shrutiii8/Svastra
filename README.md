@@ -106,19 +106,19 @@ Titan Watch / Supported Wearable
 The mobile app requests permission before reading Health Connect data. The backend stores submitted readings and assessment information. Demo mode can use synthetic data and simulated weather fallback.
 
 - **Architecture diagram:** `[Add link to architecture PDF/PPT, e.g. docs/architecture.pdf]`
-- **Architecture File:**  [`docs/ARCHITECTURE.md`](ARCHITECTURE)
+- **Architecture File:**  [`ARCHITECTURE`](docs/ARCHITECTURE.md)
 
 ---
 
 ## 6. Prototype Demonstration Video
 
-- **Video link:** [`https://www.youtube.com/watch?v=OtaDkwzUomM`](https://www.youtube.com/watch?v=OtaDkwzUomM)
+- **Video link:** [`YouTube`](https://www.youtube.com/watch?v=OtaDkwzUomM)
 
 ---
 
 ## 7. Presentation
 
-- **Presentation PDF/PPT:** [`https://drive.google.com/file/d/110_Obf1eXVNoOUHR4VGZYokPqhfljm5y/view?usp=sharing`](Drive)
+- **Presentation PDF/PPT:** [`Google Drive`](https://drive.google.com/file/d/110_Obf1eXVNoOUHR4VGZYokPqhfljm5y/view?usp=sharing)
 
 ---
 
