@@ -8,6 +8,23 @@ Svastra combines wearable health readings, environmental weather data, individua
 
 ---
 
+## 🌐 Live Website
+
+**Visit Svastra:** [Open Svastra Website](https://svastra.vercel.app)
+
+Explore the Svastra dashboard and its wearable-powered heat-exposure monitoring features.
+
+## 🔗 Project Links
+
+- **Live Website:** [Open Website](https://svastra.vercel.app)
+- **GitHub Repository:** [View Source Code](https://github.com/Shrutiii8/Svastra_Heritage-Institute-of-Technology)
+- **Demonstration Video:** [Watch Video](https://www.youtube.com/watch?v=OtaDkwzUomM)
+- **Presentation:** [View Presentation](https://drive.google.com/file/d/110_Obf1eXVNoOUHR4VGZYokPqhfljm5y/view?usp=sharing)
+- **Architecture:** [View Architecture](https://drive.google.com/file/d/1EI6JdgniTv3M8RdWnJzv8JTlP6lQg5Sr/view?usp=sharing)
+
+
+---
+
 ## 1. Team and Institution Details
 
 - **Team name:** `Svastra`
@@ -105,7 +122,7 @@ Titan Watch / Supported Wearable
 
 The mobile app requests permission before reading Health Connect data. The backend stores submitted readings and assessment information. Demo mode can use synthetic data and simulated weather fallback.
 
-- **Architecture diagram:** `[Add link to architecture PDF/PPT, e.g. docs/architecture.pdf]`
+- **Architecture diagram:** <a href="https://drive.google.com/file/d/1EI6JdgniTv3M8RdWnJzv8JTlP6lQg5Sr/view?usp=sharing" target="_blank" rel="noopener noreferrer">Google Drive</a>
 - **Architecture File:**  [`ARCHITECTURE`](docs/ARCHITECTURE.md)
 
 ---
