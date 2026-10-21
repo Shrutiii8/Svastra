@@ -115,7 +115,7 @@ The mobile app requests permission before reading Health Connect data. The backe
 
 **Minimum duration: 20 minutes**
 
-- **Video link:** `[Add an accessible video link here]`
+- **Video link:** `https://www.youtube.com/watch?v=OtaDkwzUomM`
 - The video may be an unlisted YouTube video or a recorded PowerPoint presentation.
 - Ensure the evaluation team can open the link without requesting access.
 
@@ -133,7 +133,7 @@ Suggested demonstration outline:
 
 ## 7. Presentation
 
-- **Presentation PDF/PPT:** `[Add link to the presentation file, or place it in the repository and link it here]`
+- **Presentation PDF/PPT:** `https://drive.google.com/file/d/110_Obf1eXVNoOUHR4VGZYokPqhfljm5y/view?usp=sharing`
 
 The presentation should explain the problem, healthcare use case, solution, architecture, technology stack, prototype demonstration, outcomes, limitations, and future scope.
 
