@@ -9,65 +9,67 @@ Svastra is a wearable-powered heat-exposure monitoring proof of concept for outd
 ## Architecture Diagram
 
 ```mermaid
-graph TB
-    subgraph "Physical Layer"
-        TITAN[Titan Smartwatch]
-        ANDROID[Android Phone]
-        HC[Health Connect]
-        TITAN -->|Titan Smart app| HC
+flowchart TB
+    subgraph Physical["Physical Layer"]
+        TITAN["Titan Smartwatch"]
+        ANDROID["Android Phone"]
+        HC["Android Health Connect"]
+        TITAN -->|"Titan Smart App"| HC
     end
 
-    subgraph "Mobile App (Expo / React Native)"
-        SPLASH[Splash / Consent]
-        DASHBOARD[Dashboard Tab]
-        WORKERS[Workers Tab]
-        ALERTS[Alerts Tab]
-        PROFILE[Profile / Settings Tab]
-        TWIN[Worker Digital Twin Screen]
-        HC_SVC[Health Connect Service]
-        API_SVC[API Service]
-        
-        HC -->|readRecords| HC_SVC
-        HC_SVC -->|ReadingCreate[]| API_SVC
+    subgraph Mobile["Mobile App - Expo / React Native"]
+        SPLASH["Splash / Consent"]
+        DASHBOARD["Dashboard Tab"]
+        WORKERS["Workers Tab"]
+        ALERTS["Alerts Tab"]
+        PROFILE["Profile / Settings Tab"]
+        TWIN["Worker Digital Twin Screen"]
+        HC_SVC["Health Connect Service"]
+        API_SVC["API Service"]
+
+        HC -->|"Read records"| HC_SVC
+        HC_SVC -->|"Reading batch"| API_SVC
         SPLASH --> DASHBOARD
         DASHBOARD --> TWIN
         WORKERS --> TWIN
     end
 
-    subgraph "Backend (FastAPI + PostgreSQL)"
-        FASTAPI[FastAPI App]
-        WORKERS_R[Workers Router]
-        READINGS_R[Readings Router]
-        ASSESS_R[Assessments Router]
-        WEATHER_R[Weather Router]
-        DEMO_R[Demo Router]
-        ASSESS_ENGINE[Assessment Engine\nrule-based]
-        WEATHER_SVC[Weather Service\nOpen-Meteo + cache]
-        SEED[Demo Seed\n12 synthetic workers]
-        DB[(PostgreSQL)]
+    subgraph Backend["Backend - FastAPI and PostgreSQL"]
+        FASTAPI["FastAPI Application"]
+        WORKERS_R["Workers Router"]
+        READINGS_R["Readings Router"]
+        ASSESS_R["Assessments Router"]
+        WEATHER_R["Weather Router"]
+        DEMO_R["Demo Router"]
+        ASSESS_ENGINE["Rule-based Assessment Engine"]
+        WEATHER_SVC["Weather Service and Cache"]
+        SEED["Demo Seed - Synthetic Workers"]
+        DB[("PostgreSQL Database")]
+
+        FASTAPI --> WORKERS_R
+        FASTAPI --> READINGS_R
+        FASTAPI --> ASSESS_R
+        FASTAPI --> WEATHER_R
+        FASTAPI --> DEMO_R
+
+        ASSESS_R --> ASSESS_ENGINE
+        WEATHER_R --> WEATHER_SVC
+        ASSESS_ENGINE --> DB
+        READINGS_R --> DB
+        WORKERS_R --> DB
+        SEED --> DB
     end
 
-    subgraph "External Services"
-        OPENMETEO[Open-Meteo API\nWeather data]
-        RENDER[Render / Cloud Host]
-        NEON[Managed PostgreSQL\ne.g. Neon / Supabase]
+    subgraph External["External Services"]
+        OPENMETEO["Open-Meteo Weather API"]
+        RENDER["Render Hosting"]
+        NEON["Managed PostgreSQL - if configured"]
     end
 
-    API_SVC -->|HTTPS JSON| FASTAPI
-    FASTAPI --> WORKERS_R
-    FASTAPI --> READINGS_R
-    FASTAPI --> ASSESS_R
-    FASTAPI --> WEATHER_R
-    FASTAPI --> DEMO_R
-    ASSESS_R --> ASSESS_ENGINE
-    WEATHER_R --> WEATHER_SVC
-    WEATHER_SVC -->|GET forecast| OPENMETEO
-    ASSESS_ENGINE --> DB
-    READINGS_R --> DB
-    WORKERS_R --> DB
-    SEED --> DB
-    FASTAPI -.->|deploy| RENDER
-    DB -.->|managed| NEON
+    API_SVC -->|"HTTPS JSON API"| FASTAPI
+    WEATHER_SVC -->|"Weather request"| OPENMETEO
+    FASTAPI -.->|"Deployment"| RENDER
+    DB -.->|"Managed database, if configured"| NEON
 ```
 
 ## Data Flow
