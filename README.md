@@ -1,435 +1,316 @@
-# HeatGuard Twin 🛡️🌡️
+# Svastra 🌡️
 
-**Wearable-powered heat-exposure monitoring for outdoor workers.**
+**A wearable-powered heat-exposure monitoring proof of concept for outdoor workers.**
 
-> ⚕️ **Disclaimer:** This is a hackathon proof of concept, not a medical device. All assessments are non-diagnostic, illustrative, and must not replace professional medical or occupational-health advice. Assessment thresholds are configurable and not medically validated.
+Svastra combines wearable health readings, environmental weather data, individual baselines, and a transparent rule-based assessment engine to help identify unusual physiological patterns and support timely preventive action for people working outdoors.
 
----
-
-## Problem Statement
-
-Construction workers, delivery riders, street vendors, and traffic police in India work outdoors for extended periods and can experience significant heat exposure. Weather measurements alone cannot tell us how an individual worker is responding physiologically. HeatGuard Twin combines wearable biometrics, environmental conditions, individual baselines, and a rule-based assessment engine to help identify unusual physiological patterns and support timely preventive action.
+> **Important disclaimer:** Svastra is a hackathon proof of concept, not a medical device. Its assessments are non-diagnostic, illustrative, and must not replace professional medical or occupational-health advice. Assessment thresholds are configurable and have not been medically validated.
 
 ---
 
-## Features
+## 1. Team and Institution Details
 
-- 📱 **React Native / Expo mobile app** — onboarding, dashboard, worker list, alerts, individual worker "digital twin"
-- ❤️ **Android Health Connect integration** — reads heart rate, steps, distance, SpO₂ from Titan watch (via Titan Smart app) and other wearables
-- 🌡️ **Open-Meteo weather integration** — real-time temperature, humidity, wind speed with simulated fallback
-- 🧪 **12 synthetic demo workers** — 4 categories, 7 realistic scenarios, all clearly labelled
-- 🤖 **Rule-based assessment engine** — transparent, explainable, non-diagnostic monitoring
-- 📊 **FastAPI backend** — RESTful API with async PostgreSQL persistence
-- 🔒 **Explicit user consent** before any health data is collected or transmitted
-- 🔄 **Demo mode** — works offline with no watch or network
+- **Team name:** `Svastra`
+- **Team leader:** `Anupam Raj`
+- **Team members:** `Anupam Raj, Shruti Sinha, Sanskar Agrawal`
+- **College / institution:** Heritage Institute of Technology, Kolkata
+- **Incubator (if applicable):** `N/A`
 
 ---
 
-## Architecture
+## 2. Project Title
 
+**Svastra — Wearable-Powered Heat-Exposure Monitoring for Outdoor Workers**
+
+---
+
+## 3. Problem Statement and Healthcare Use Case
+
+Construction workers, delivery riders, street vendors, and traffic police in India can work outdoors for extended periods and experience significant heat exposure. Weather measurements alone cannot show how an individual worker is responding physiologically.
+
+Svastra brings together wearable biometrics, environmental conditions, and individual baselines to flag unusual physiological patterns. It is intended to support awareness and preventive action by workers or supervisors—not to diagnose heat illness or replace clinical judgement.
+
+### Healthcare use case
+
+- Collect health readings from a supported wearable through Android Health Connect, with the user's permission.
+- Combine available readings with current environmental conditions such as temperature, humidity, and wind speed.
+- Compare readings against available individual baselines using transparent, rule-based logic.
+- Display worker status and alerts so unusual patterns or missing data can be reviewed.
+- Provide a demo mode using clearly labelled synthetic worker data when a wearable or network is unavailable.
+
+### Intended users
+
+- Construction workers
+- Delivery riders
+- Street vendors
+- Traffic police and other outdoor workers
+- Supervisors responsible for worker safety
+
+---
+
+## 4. Technical Stack
+
+| Component | Technology |
+|---|---|
+| Mobile application | React Native, Expo SDK 57, TypeScript, Expo Router |
+| Wearable data | Android Health Connect; compatible readings may be synced from the Titan Smart app and other supported wearables |
+| Health data integration | `react-native-health-connect` |
+| Charts | `react-native-chart-kit`, `react-native-svg` |
+| State and data fetching | Zustand, TanStack Query |
+| Backend API | Python, FastAPI, Pydantic v2 |
+| Database access | SQLAlchemy 2.x async, psycopg 3 |
+| Database | PostgreSQL |
+| Database migrations | Alembic |
+| HTTP clients | Axios (mobile), HTTPX (backend) |
+| Weather data | Open-Meteo API |
+| Testing | pytest-asyncio |
+| Deployment | Render (backend); managed PostgreSQL |
+
+### AI/ML model or framework details
+
+**Current implementation: rule-based assessment engine; no trained machine-learning model is included.**
+
+The assessment engine applies transparent rules to available readings and individual baselines. It can flag patterns such as elevated heart rate, stale readings, disconnected workers, or insufficient data. The thresholds are illustrative and are not medically validated. The project does not claim ML-based prediction or model accuracy.
+
+A future ML model would require a suitable labelled dataset, evaluation, clinical/occupational-health review, and careful validation before any real-world use.
+
+---
+
+## 5. System Architecture
+
+```text
+Titan Watch / Supported Wearable
+              |
+              v
+       Titan Smart App
+        (if applicable)
+              |
+              v
+   Android Health Connect
+              |
+              v
+    Svastra Mobile App
+       (React Native / Expo)
+              |
+           HTTPS
+              |
+              v
+       FastAPI Backend
+              |
+       +------+------+
+       |             |
+       v             v
+ PostgreSQL     Open-Meteo API
+                 (weather)
 ```
-Titan Watch → Titan Smart App → Android Health Connect
-                                        ↓
-                              HeatGuard Mobile App (Expo)
-                                        ↓ HTTPS
-                              FastAPI Backend (Python)
-                                        ↓
-                              PostgreSQL Database
-                              Open-Meteo Weather API (cached)
-```
 
-See [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md) for the full Mermaid diagram.
+The mobile app requests permission before reading Health Connect data. The backend stores submitted readings and assessment information. Demo mode can use synthetic data and simulated weather fallback.
+
+- **Architecture diagram:** `[Add link to architecture PDF/PPT, e.g. docs/architecture.pdf]`
+- The repository also contains `docs/ARCHITECTURE.md`, if included in this submission.
 
 ---
 
-## Technology Stack
+## 6. Prototype Demonstration Video
 
-| Layer | Technology |
-|-------|-----------|
-| Mobile | React Native, Expo SDK 57, TypeScript (strict), Expo Router |
-| Wearable | react-native-health-connect v3, Android Health Connect |
-| Charts | react-native-chart-kit, react-native-svg |
-| State | Zustand, TanStack Query |
-| Backend | Python 3.10, FastAPI 0.115, Pydantic v2, SQLAlchemy 2.x async |
-| Database | PostgreSQL + psycopg 3 |
-| Migrations | Alembic |
-| HTTP client | Axios (mobile), HTTPX (backend) |
-| Weather | Open-Meteo (free, no API key) |
-| Tests | pytest-asyncio (backend) |
-| Deployment | Render (backend), managed PostgreSQL |
+**Minimum duration: 20 minutes**
+
+- **Video link:** `[Add an accessible video link here]`
+- The video may be an unlisted YouTube video or a recorded PowerPoint presentation.
+- Ensure the evaluation team can open the link without requesting access.
+
+Suggested demonstration outline:
+1. Introduce the problem, target users, and healthcare use case.
+2. Explain the system architecture and technology stack.
+3. Demonstrate onboarding and consent.
+4. Show the dashboard, worker list, individual worker view, and alerts.
+5. Demonstrate Health Connect permissions and reading sync, where a compatible device is available.
+6. Show demo mode and explain the synthetic scenarios.
+7. Explain the rule-based assessment engine and its limitations.
+8. Discuss privacy, known limitations, and future work.
 
 ---
 
-## Repository Structure
+## 7. Presentation
 
-```
-heatguard-twin/
-├── mobile/                         # React Native / Expo app
-│   ├── app/
-│   │   ├── _layout.tsx             # Root stack navigator
-│   │   ├── index.tsx               # Splash / consent check
-│   │   ├── onboarding.tsx          # Data consent screen
-│   │   ├── (tabs)/
-│   │   │   ├── _layout.tsx         # Tab bar
-│   │   │   ├── index.tsx           # Dashboard
-│   │   │   ├── workers.tsx         # Worker list
-│   │   │   ├── alerts.tsx          # Alerts
-│   │   │   └── profile.tsx         # Settings / Health Connect
-│   │   └── worker/[id].tsx         # Individual worker twin
-│   ├── src/
-│   │   ├── components/             # WorkerCard, StatusBadge, WeatherWidget
-│   │   ├── services/api.ts         # Axios backend client
-│   │   ├── services/healthConnect.ts # Health Connect integration
-│   │   ├── constants/theme.ts      # Design system
-│   │   └── types/index.ts          # TypeScript types
-│   ├── app.json                    # Expo config with HC permissions
-│   ├── eas.json                    # EAS Build config
-│   └── package.json
-├── backend/
-│   ├── app/
-│   │   ├── main.py                 # FastAPI app
-│   │   ├── config.py               # Pydantic settings
-│   │   ├── database.py             # Async SQLAlchemy engine
-│   │   ├── models/__init__.py      # ORM models
-│   │   ├── schemas/__init__.py     # Pydantic schemas
-│   │   ├── routers/                # workers, readings, assessments, weather, demo
-│   │   ├── services/               # assessment engine, weather service
-│   │   └── seed/demo.py            # 12 synthetic demo workers
-│   ├── alembic/                    # Database migrations
-│   ├── tests/test_api.py           # 18 pytest-asyncio tests (all passing)
-│   ├── requirements.txt
-│   ├── alembic.ini
-│   └── Dockerfile
+- **Presentation PDF/PPT:** `[Add link to the presentation file, or place it in the repository and link it here]`
+
+The presentation should explain the problem, healthcare use case, solution, architecture, technology stack, prototype demonstration, outcomes, limitations, and future scope.
+
+---
+
+## 8. Open-Source License
+
+This project is intended to be released under the **MIT License**.
+
+- **License file:** [`LICENSE`](LICENSE)
+
+Ensure the repository contains the complete MIT `LICENSE` file before submission. Review third-party library, SDK, and data-source terms separately.
+
+---
+
+## 9. Features
+
+- React Native / Expo mobile app with onboarding, dashboard, worker list, alerts, and individual worker views.
+- Android Health Connect integration for supported readings such as heart rate, steps, distance, and oxygen saturation, subject to device and data-source availability.
+- Open-Meteo weather integration for temperature, humidity, and wind speed, with a simulated fallback.
+- Synthetic demo workers covering multiple illustrative scenarios.
+- Transparent, rule-based, non-diagnostic assessments.
+- FastAPI REST API with PostgreSQL persistence.
+- Explicit user consent before health data is collected or transmitted.
+- Demo mode for demonstrations when a wearable or network is unavailable.
+
+---
+
+## 10. Repository Structure
+
+```text
+svastra/
+├── mobile/                  # React Native / Expo application
+├── backend/                 # FastAPI backend
 ├── docs/
 │   ├── ARCHITECTURE.md
 │   ├── DATA_SOURCES.md
 │   ├── PRIVACY.md
 │   └── BUILD_STATUS.md
 ├── .env.example
-├── .gitignore
+├── LICENSE
 └── README.md
 ```
 
----
-
-## Prerequisites
-
-- **Node.js** ≥ 18 (tested: v22.23.2)
-- **npm** ≥ 9 (tested: 10.9.8)
-- **Python** 3.10+ (tested: 3.10.12)
-- **PostgreSQL** 14+
-- **Java** 11+ (for Android build tools)
-- **Android Studio** with SDK 34 (for development build)
-- Optional: **EAS CLI** (`npm install -g eas-cli`) for cloud builds
+The exact contents may vary by repository version. Keep this section in sync with the files actually committed.
 
 ---
 
-## Quick Start
+## 11. Setup and Running Locally
 
-### 1. Clone the repository
+### Prerequisites
 
-```bash
-git clone <repo-url>
-cd heatguard-twin
-```
+- Node.js and npm
+- Python 3.10+
+- PostgreSQL
+- Android device or emulator for mobile testing
+- Android Health Connect support for wearable-data integration
+- An Expo development build for native Health Connect modules; Expo Go does not support these native modules
 
-### 2. Set up environment variables
+### Backend
 
-```bash
-cp .env.example backend/.env
-# Edit backend/.env with your PostgreSQL credentials
-```
+1. Clone the public repository and enter its directory:
 
-### 3. Start the backend
+   ```bash
+   git clone <PUBLIC_GITHUB_REPOSITORY_URL>
+   cd svastra
+   ```
 
-```bash
-cd backend
+2. Configure environment variables using the provided example file. Set a valid PostgreSQL connection string in `backend/.env`.
 
-# Create a virtual environment (recommended)
-python3 -m venv .venv
-source .venv/bin/activate
+   ```bash
+   cp .env.example backend/.env
+   ```
 
-# Install dependencies
-pip install -r requirements.txt
+3. Install dependencies and start the API:
 
-# Start the server (tables auto-created on startup, demo data auto-seeded)
-uvicorn app.main:app --reload --port 8000
-```
+   ```bash
+   cd backend
+   python3 -m venv .venv
+   source .venv/bin/activate
+   pip install -r requirements.txt
+   uvicorn app.main:app --reload --port 8000
+   ```
 
-Backend will be available at:
-- API: http://localhost:8000
-- Interactive docs: http://localhost:8000/docs
-- Health check: http://localhost:8000/health
+4. Open the API documentation at `http://localhost:8000/docs`. The health endpoint is available at `http://localhost:8000/health`.
 
-### 4. Set up the mobile app
+### Mobile application
+
+In a second terminal:
 
 ```bash
 cd mobile
-
-# Install dependencies
 npm install
-
-# Start Expo dev server
-npm start
-
-# OR start with Android target directly
-npm run android
 ```
 
----
-
-## PostgreSQL Configuration
-
-### Create user and database
-
-```sql
--- Run as postgres superuser
-CREATE USER heatguard WITH PASSWORD 'changeme';
-CREATE DATABASE heatguard OWNER heatguard;
-GRANT ALL PRIVILEGES ON DATABASE heatguard TO heatguard;
-```
-
-### Database migrations (optional — tables auto-create on startup)
+Set `EXPO_PUBLIC_API_BASE_URL` in `mobile/.env` to the backend address accessible from your device. For example:
 
 ```bash
-cd backend
-PATH="$HOME/.local/bin:$PATH" alembic upgrade head
-
-# Generate a new migration after model changes
-alembic revision --autogenerate -m "description"
-```
-
----
-
-## Android Health Connect Setup
-
-### Requirements
-- Android 9+ with Health Connect APK, or Android 14+ (Health Connect built-in)
-- Expo **development build** (not Expo Go) — native modules required
-
-### Install Health Connect APK (Android 9–13)
-
-Download from: https://play.google.com/store/apps/details?id=com.google.android.apps.healthdata
-
-### Build the development client
-
-```bash
-cd mobile
-
-# Option A: Local build (requires Android Studio + SDK)
-npm run dev-build   # runs: expo run:android
-
-# Option B: EAS cloud build
-npx eas-cli build --profile development --platform android
-# Install the resulting .apk on your device
-```
-
-### Required Android Manifest permissions
-
-These are configured in `app.json` and applied automatically during build:
-```
-android.permission.health.READ_HEART_RATE
-android.permission.health.READ_STEPS
-android.permission.health.READ_DISTANCE
-android.permission.health.READ_OXYGEN_SATURATION
-```
-
-### Titan Smartwatch setup
-
-1. Install **Titan Smart** app on your Android phone
-2. Pair and sync your Titan watch
-3. Open Titan Smart → Settings → Health Connect → Enable sync
-4. Open HeatGuard Twin → Profile → Request Permissions
-5. Grant health permissions in the Android Health Connect dialog
-6. Navigate to a worker profile → Readings tab → Sync from Health Connect
-
----
-
-## Environment Variables
-
-Copy `.env.example` to `backend/.env`:
-
-| Variable | Description | Default |
-|----------|-------------|---------|
-| `DATABASE_URL` | PostgreSQL connection string | `postgresql+psycopg://heatguard:changeme@localhost:5432/heatguard` |
-| `SECRET_KEY` | App secret (change in production) | `dev-secret-key-...` |
-| `ENVIRONMENT` | `development` or `production` | `development` |
-| `BACKEND_CORS_ORIGINS` | JSON array of allowed origins (pydantic-settings v2 requires JSON) | `["http://localhost:8081"]` |
-| `WEATHER_DEFAULT_LATITUDE` | Demo weather latitude | `28.6139` (New Delhi) |
-| `WEATHER_DEFAULT_LONGITUDE` | Demo weather longitude | `77.2090` |
-| `WEATHER_CACHE_SECONDS` | Weather cache TTL | `300` |
-| `DEMO_MODE` | Auto-seed demo data on startup | `true` |
-
-**Mobile:** Set `EXPO_PUBLIC_API_BASE_URL` in `mobile/.env`:
-```
 # Android emulator
 EXPO_PUBLIC_API_BASE_URL=http://10.0.2.2:8000
 
-# Physical device (replace with your machine's LAN IP)
+# Physical Android device: replace with your laptop's LAN IP
 EXPO_PUBLIC_API_BASE_URL=http://192.168.x.x:8000
 ```
 
----
-
-## API Endpoints
-
-| Method | Path | Description |
-|--------|------|-------------|
-| GET | `/health` | Health check |
-| GET | `/api/v1/workers` | List workers (filterable) |
-| GET | `/api/v1/workers/{id}` | Get worker |
-| POST | `/api/v1/workers` | Create worker |
-| GET | `/api/v1/readings/{worker_id}` | Worker reading history |
-| POST | `/api/v1/readings` | Submit single reading |
-| POST | `/api/v1/readings/batch` | Submit batch (idempotent) |
-| GET | `/api/v1/assessments/workers/{id}` | Fresh assessment |
-| GET | `/api/v1/assessments` | Recent assessments |
-| GET | `/api/v1/weather/current` | Current weather |
-| GET | `/api/v1/weather/history` | Stored weather history |
-| GET | `/api/v1/demo/status` | Demo data summary |
-| POST | `/api/v1/demo/reset` | Reset + re-seed demo data |
-
-Full OpenAPI docs available at `/docs` when the server is running.
-
----
-
-## Demo Mode
-
-Demo mode is active by default (`DEMO_MODE=true`). On first startup, 12 fictional workers are seeded with synthetic readings covering 7 scenarios:
-
-| Scenario | What it shows |
-|----------|--------------|
-| `normal` | No unusual pattern detected |
-| `elevated` | HR elevated ~25 bpm above baseline → Monitor |
-| `supervisor_review` | HR elevated ~45 bpm above baseline → Supervisor Review |
-| `stale` | Last reading 3+ hours ago → Insufficient Data |
-| `disconnected` | No readings at all |
-| `insufficient_data` | Only 2 readings, no baseline |
-| No baseline | Readings available but no baseline established |
-
-All synthetic workers carry `is_synthetic: true`. To reset:
-```bash
-curl -X POST http://localhost:8000/api/v1/demo/reset
-```
-Or use the "Reset Demo Data" button in the app's Profile tab.
-
----
-
-## Testing
-
-### Backend tests (18 tests, all passing)
+Then start Expo:
 
 ```bash
-cd backend
-PATH="$HOME/.local/bin:$PATH" python3 -m pytest tests/ -v
+npm start
 ```
 
-Test coverage includes:
-- Health endpoint, root
-- Worker CRUD, duplicates, 404
-- Reading submission, invalid range rejection
-- Duplicate deduplication (single + batch)
-- Reading history retrieval
-- Assessment: insufficient data, elevated HR
-- Demo status endpoint
-- Weather current (uses simulated fallback in tests)
-- Synthetic data provenance (is_synthetic flag)
-- Worker category filtering
-
-### TypeScript type check (mobile)
-
-```bash
-cd mobile
-npm run type-check
-```
+For Health Connect, build and install an Android development build rather than relying on Expo Go. See the project documentation for device-specific setup.
 
 ---
 
-## Deployment
+## 12. Demo Mode and Limitations
 
-### Backend on Render
+Demo mode uses fictional workers and synthetic readings. Synthetic data must remain clearly labelled and must not be presented as real patient or worker measurements.
 
-1. Push to GitHub
-2. Create a new **Web Service** on Render
-   - Build command: `pip install -r requirements.txt`
-   - Start command: `uvicorn app.main:app --host 0.0.0.0 --port $PORT`
-3. Add environment variables from `.env.example` in Render's dashboard
-4. Create a **PostgreSQL** database on Neon/Supabase/Render and set `DATABASE_URL`
-
-### Mobile distribution
-
-```bash
-# Development APK (install directly)
-npx eas-cli build --profile development --platform android
-
-# Preview APK (shareable)
-npx eas-cli build --profile preview --platform android
-```
+Current limitations include:
+- The assessment logic is rule-based and not a clinically validated ML model.
+- Assessment thresholds are illustrative and not medically validated.
+- Wearable data availability and sync frequency depend on the device, companion app, Health Connect permissions, and the data exposed by the source.
+- Missing readings are not proof of a health problem; stale or missing data should be treated as insufficient information.
+- API authentication and production-grade controls may be incomplete in this proof of concept.
+- Demo weather settings may use a fixed location or simulated fallback.
 
 ---
 
-## Data Sources & Licenses
+## 13. Privacy and Data Sources
 
-| Source | License | Notes |
-|--------|---------|-------|
-| Android Health Connect | Android SDK terms | User data, permission-gated |
-| Open-Meteo | CC BY 4.0 | Free tier, no API key |
-| Demo seed data | MIT (this project) | Entirely synthetic |
+- User permission is required before accessing health readings through Android Health Connect.
+- The app should request only the permissions needed for its supported features.
+- No GPS location is required for the fixed-location demo weather configuration.
+- Demo worker data is synthetic and should be clearly identified.
+- Do not expose real health data through a publicly accessible deployment without appropriate authentication, access controls, consent, and data-protection review.
 
-See [`docs/DATA_SOURCES.md`](docs/DATA_SOURCES.md) for details.
+Relevant project documents:
+- [`docs/PRIVACY.md`](docs/PRIVACY.md)
+- [`docs/DATA_SOURCES.md`](docs/DATA_SOURCES.md)
 
----
+### Data source notes
 
-## Known Limitations & Future Work
-
-### Current Limitations
-
-1. **No API authentication** — all endpoints are open in this POC. Add JWT/OAuth before multi-user production use.
-2. **Health Connect requires dev build** — Expo Go does not support native Health Connect modules.
-3. **Titan readings may be intermittent** — the system correctly handles gaps; missing periods are not interpolated.
-4. **No ML model** — the assessment is rule-based with illustrative thresholds. A validated ML model requires labelled data, proper evaluation, and regulatory review.
-5. **Demo weather location fixed** — New Delhi. Configurable via environment variables.
-6. **No background sync** — sync is foreground-only in this version.
-7. **ANDROID_HOME not configured on dev machine** — native build requires Android Studio setup.
-
-### Future Work
-
-- [ ] JWT authentication for multi-user deployment
-- [ ] Background sync on Android using WorkManager / Expo Background Fetch
-- [ ] WBGT estimation with documented formula and limitations
-- [ ] Supervisor web dashboard (separate from mobile)
-- [ ] Push notifications for active alerts
-- [ ] ML model (if suitable labelled occupational heat dataset found)
-- [ ] Data retention policies and automatic expiry
-- [ ] DPIA and compliance review for production use
+- **Android Health Connect:** permission-gated health data; subject to Android SDK and platform terms.
+- **Open-Meteo:** weather data; review the applicable attribution and licence requirements, including CC BY 4.0 where applicable.
+- **Demo data:** synthetic data created for this project.
 
 ---
 
-## Privacy
+## 14. Submission Checklist
 
-See [`docs/PRIVACY.md`](docs/PRIVACY.md) for the full privacy approach.
+Before submitting, verify every item below.
 
-Key points:
-- Explicit consent required before data collection
-- Health Connect permissions required before any reading
-- No GPS location collected (fixed demo location for weather)
-- All demo data is synthetic and clearly labelled
-- Add API authentication before exposing real health data
-
----
-
-## Contributing
-
-This is a hackathon submission. If you fork and extend it:
-- Keep synthetic and real data clearly separated
-- Do not add fake ML accuracy metrics
-- Maintain the non-diagnostic disclaimers
-- Review `docs/PRIVACY.md` before collecting any real health data
+- [ ] Repository is **public** and accessible to evaluators.
+- [ ] Repository/folder naming follows the event requirement: `Team Name_College Name`.
+- [ ] Team name, team leader, team members, mentor (if applicable), and college/incubator details are filled in.
+- [ ] Project title, problem statement, and healthcare use case are documented.
+- [ ] Technical stack and AI/ML model or framework details are documented accurately.
+- [ ] A video of **at least 20 minutes** is linked and accessible.
+- [ ] Open-source `LICENSE` file is committed.
+- [ ] Architecture diagram is included in PDF/PPT format and linked above.
+- [ ] Presentation is included in PDF/PPT format and linked above.
+- [ ] All referenced documents and links can be opened without special access.
+- [ ] Submission platform contains only the team leader's name, phone number, email ID, and public GitHub repository link, as instructed.
 
 ---
 
-## License
+## 15. Future Work
 
-MIT License — see LICENSE file.
+- Add authentication and role-based access control.
+- Add reliable background sync where supported.
+- Improve environmental heat-exposure estimation with documented methods and limitations.
+- Explore supervisor notifications and a dedicated dashboard.
+- Define retention and deletion policies for health data.
+- Evaluate whether a suitable labelled occupational-heat dataset exists before developing an ML model.
+- Complete privacy, security, and occupational-health review before production use.
 
-> HeatGuard Twin was built during a 3-day hackathon. It is a proof of concept for demonstration purposes only.
+---
+
+**Svastra is a hackathon proof of concept for demonstration purposes only. It is not intended to diagnose, treat, or prevent any medical condition.**
