@@ -36,7 +36,6 @@ Svastra brings together wearable biometrics, environmental conditions, and indiv
 - Combine available readings with current environmental conditions such as temperature, humidity, and wind speed.
 - Compare readings against available individual baselines using transparent, rule-based logic.
 - Display worker status and alerts so unusual patterns or missing data can be reviewed.
-- Provide a demo mode using clearly labelled synthetic worker data when a wearable or network is unavailable.
 
 ### Intended users
 
@@ -107,19 +106,19 @@ Titan Watch / Supported Wearable
 The mobile app requests permission before reading Health Connect data. The backend stores submitted readings and assessment information. Demo mode can use synthetic data and simulated weather fallback.
 
 - **Architecture diagram:** `[Add link to architecture PDF/PPT, e.g. docs/architecture.pdf]`
-- The repository also contains `docs/ARCHITECTURE.md`, if included in this submission.
+- **Architecture File:**  [`docs/ARCHITECTURE.md`](ARCHITECTURE)
 
 ---
 
 ## 6. Prototype Demonstration Video
 
-- **Video link:** `https://www.youtube.com/watch?v=OtaDkwzUomM`
+- **Video link:** [`https://www.youtube.com/watch?v=OtaDkwzUomM`](https://www.youtube.com/watch?v=OtaDkwzUomM)
 
 ---
 
 ## 7. Presentation
 
-- **Presentation PDF/PPT:** `https://drive.google.com/file/d/110_Obf1eXVNoOUHR4VGZYokPqhfljm5y/view?usp=sharing`
+- **Presentation PDF/PPT:** [`https://drive.google.com/file/d/110_Obf1eXVNoOUHR4VGZYokPqhfljm5y/view?usp=sharing`](Drive)
 
 ---
 
