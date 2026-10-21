@@ -1,4 +1,4 @@
-# HeatGuard Twin — Architecture
+# Svastra — Architecture
 
 ## System Overview
 
