@@ -2,7 +2,7 @@
 
 ## System Overview
 
-HeatGuard Twin is a wearable-powered heat-exposure monitoring proof of concept for outdoor workers. It combines wearable biometrics (via Android Health Connect), environmental weather data (via Open-Meteo), personal baseline modeling, and a rule-based assessment engine to support preventive safety actions.
+Svastra is a wearable-powered heat-exposure monitoring proof of concept for outdoor workers. It combines wearable biometrics (via Android Health Connect), environmental weather data (via Open-Meteo), personal baseline modeling, and a rule-based assessment engine to support preventive safety actions.
 
 > **Disclaimer:** This is a hackathon proof of concept, not a medical device. All assessments are non-diagnostic and illustrative. Thresholds are configurable and not medically validated.
 
