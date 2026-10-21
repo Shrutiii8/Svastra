@@ -1,4 +1,4 @@
-# HeatGuard Twin — Build Status
+# Svastra — Build Status
 
 Last updated: 2026-10-14
 
