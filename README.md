@@ -112,13 +112,13 @@ The mobile app requests permission before reading Health Connect data. The backe
 
 ## 6. Prototype Demonstration Video
 
-- **Video link:** [`YouTube`](https://www.youtube.com/watch?v=OtaDkwzUomM)
+- **Video Link:** <a href="https://www.youtube.com/watch?v=OtaDkwzUomM" target="_blank" rel="noopener noreferrer">YouTube</a>
 
 ---
 
 ## 7. Presentation
 
-- **Presentation PDF/PPT:** [`Google Drive`](https://drive.google.com/file/d/110_Obf1eXVNoOUHR4VGZYokPqhfljm5y/view?usp=sharing)
+- **Presentation PDF/PPT:** <a href="https://drive.google.com/file/d/110_Obf1eXVNoOUHR4VGZYokPqhfljm5y/view?usp=sharing" target="_blank" rel="noopener noreferrer">Google Drive</a>
 
 ---
 
