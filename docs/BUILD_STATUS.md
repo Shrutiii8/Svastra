@@ -1,7 +1,5 @@
 # Svastra — Build Status
 
-Last updated: 2026-10-14
-
 ---
 
 ## ✅ Backend (FastAPI)
