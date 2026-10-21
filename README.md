@@ -113,29 +113,13 @@ The mobile app requests permission before reading Health Connect data. The backe
 
 ## 6. Prototype Demonstration Video
 
-**Minimum duration: 20 minutes**
-
 - **Video link:** `https://www.youtube.com/watch?v=OtaDkwzUomM`
-- The video may be an unlisted YouTube video or a recorded PowerPoint presentation.
-- Ensure the evaluation team can open the link without requesting access.
-
-Suggested demonstration outline:
-1. Introduce the problem, target users, and healthcare use case.
-2. Explain the system architecture and technology stack.
-3. Demonstrate onboarding and consent.
-4. Show the dashboard, worker list, individual worker view, and alerts.
-5. Demonstrate Health Connect permissions and reading sync, where a compatible device is available.
-6. Show demo mode and explain the synthetic scenarios.
-7. Explain the rule-based assessment engine and its limitations.
-8. Discuss privacy, known limitations, and future work.
 
 ---
 
 ## 7. Presentation
 
 - **Presentation PDF/PPT:** `https://drive.google.com/file/d/110_Obf1eXVNoOUHR4VGZYokPqhfljm5y/view?usp=sharing`
-
-The presentation should explain the problem, healthcare use case, solution, architecture, technology stack, prototype demonstration, outcomes, limitations, and future scope.
 
 ---
 
@@ -144,8 +128,6 @@ The presentation should explain the problem, healthcare use case, solution, arch
 This project is intended to be released under the **MIT License**.
 
 - **License file:** [`LICENSE`](LICENSE)
-
-Ensure the repository contains the complete MIT `LICENSE` file before submission. Review third-party library, SDK, and data-source terms separately.
 
 ---
 
@@ -165,20 +147,25 @@ Ensure the repository contains the complete MIT `LICENSE` file before submission
 ## 10. Repository Structure
 
 ```text
-svastra/
-├── mobile/                  # React Native / Expo application
-├── backend/                 # FastAPI backend
-├── docs/
-│   ├── ARCHITECTURE.md
-│   ├── DATA_SOURCES.md
-│   ├── PRIVACY.md
-│   └── BUILD_STATUS.md
-├── .env.example
-├── LICENSE
-└── README.md
+Svastra/
+├── apk/                    # Android APK and related release artifacts
+├── backend/                # FastAPI backend
+├── docs/                   # Project documentation
+│   ├── ARCHITECTURE.md     # System architecture and component interactions
+│   ├── DATA_SOURCES.md     # Data sources, provenance, and limitations
+│   ├── PRIVACY.md          # Privacy approach and data handling
+│   └── BUILD_STATUS.md    # Build and implementation status
+├── ml/                     # Machine learning / risk assessment components
+├── mobile/                 # React Native / Expo mobile application
+├── web/                    # Web dashboard or frontend
+├── .env.example            # Example environment configuration
+├── .gitignore              # Git ignore rules
+├── LICENSE                 # Project license
+├── README.md               # Project overview and setup instructions
+├── build-apk.sh            # Android APK build script
+├── docker-compose.yml      # Docker Compose configuration
+└── render.yaml             # Render deployment configuration
 ```
-
-The exact contents may vary by repository version. Keep this section in sync with the files actually committed.
 
 ---
 
@@ -280,36 +267,6 @@ Relevant project documents:
 - **Android Health Connect:** permission-gated health data; subject to Android SDK and platform terms.
 - **Open-Meteo:** weather data; review the applicable attribution and licence requirements, including CC BY 4.0 where applicable.
 - **Demo data:** synthetic data created for this project.
-
----
-
-## 14. Submission Checklist
-
-Before submitting, verify every item below.
-
-- [ ] Repository is **public** and accessible to evaluators.
-- [ ] Repository/folder naming follows the event requirement: `Team Name_College Name`.
-- [ ] Team name, team leader, team members, mentor (if applicable), and college/incubator details are filled in.
-- [ ] Project title, problem statement, and healthcare use case are documented.
-- [ ] Technical stack and AI/ML model or framework details are documented accurately.
-- [ ] A video of **at least 20 minutes** is linked and accessible.
-- [ ] Open-source `LICENSE` file is committed.
-- [ ] Architecture diagram is included in PDF/PPT format and linked above.
-- [ ] Presentation is included in PDF/PPT format and linked above.
-- [ ] All referenced documents and links can be opened without special access.
-- [ ] Submission platform contains only the team leader's name, phone number, email ID, and public GitHub repository link, as instructed.
-
----
-
-## 15. Future Work
-
-- Add authentication and role-based access control.
-- Add reliable background sync where supported.
-- Improve environmental heat-exposure estimation with documented methods and limitations.
-- Explore supervisor notifications and a dedicated dashboard.
-- Define retention and deletion policies for health data.
-- Evaluate whether a suitable labelled occupational-heat dataset exists before developing an ML model.
-- Complete privacy, security, and occupational-health review before production use.
 
 ---
 
